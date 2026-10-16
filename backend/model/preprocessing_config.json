@@ -1,0 +1,241 @@
+{
+  "numeric_features": [
+    "num_of_prev_attempts",
+    "studied_credits",
+    "date_registration",
+    "clicks_8w",
+    "active_days_8w",
+    "active_weeks_8w",
+    "unique_sites_8w",
+    "avg_daily_clicks",
+    "clicks_w1_4",
+    "clicks_w5_8",
+    "engagement_change",
+    "engagement_ratio",
+    "assessments_attempted",
+    "mean_score_8w",
+    "score_std_8w",
+    "late_submissions_8w",
+    "avg_submission_delay"
+  ],
+  "categorical_features": [
+    "gender",
+    "region",
+    "highest_education",
+    "imd_band",
+    "age_band",
+    "disability",
+    "code_module",
+    "code_presentation"
+  ],
+  "num_medians": [
+    0.0,
+    60.0,
+    -57.0,
+    290.0,
+    17.0,
+    7.0,
+    27.0,
+    17.141196013289036,
+    175.0,
+    106.0,
+    -48.0,
+    0.6117829740591889,
+    2.0,
+    78.5,
+    5.656854249492381,
+    0.0,
+    -0.5
+  ],
+  "num_mean": [
+    0.16322523241186757,
+    79.75869051636855,
+    -69.39416439112694,
+    444.8640505630043,
+    19.662105360046635,
+    6.467738471450925,
+    31.342742306630257,
+    19.682896248993455,
+    261.7518485564385,
+    181.9289724787531,
+    -77.0620071794557,
+    1.5104969490339832,
+    1.9992329641334028,
+    75.60069646856687,
+    8.208443639420384,
+    0.4148743595250514,
+    -0.7953803986541078
+  ],
+  "num_scale": [
+    0.47975847416297385,
+    41.07190026123349,
+    49.228660431889004,
+    528.6234455601535,
+    12.929197327842141,
+    2.1922393396643165,
+    21.204349899065665,
+    12.371787717528896,
+    306.8308781810005,
+    256.19299745383876,
+    199.62893732911948,
+    10.318786494738111,
+    0.6137982625201013,
+    15.266617203842081,
+    9.387594390221643,
+    0.6603948874845209,
+    5.860395960655142
+  ],
+  "categorical_info": {
+    "gender": {
+      "fill_value": "M",
+      "categories": [
+        "F",
+        "M"
+      ]
+    },
+    "region": {
+      "fill_value": "Scotland",
+      "categories": [
+        "East Anglian Region",
+        "East Midlands Region",
+        "Ireland",
+        "London Region",
+        "North Region",
+        "North Western Region",
+        "Scotland",
+        "South East Region",
+        "South Region",
+        "South West Region",
+        "Wales",
+        "West Midlands Region",
+        "Yorkshire Region"
+      ]
+    },
+    "highest_education": {
+      "fill_value": "A Level or Equivalent",
+      "categories": [
+        "A Level or Equivalent",
+        "HE Qualification",
+        "Lower Than A Level",
+        "No Formal quals",
+        "Post Graduate Qualification"
+      ]
+    },
+    "imd_band": {
+      "fill_value": "20-30%",
+      "categories": [
+        "0-10%",
+        "10-20",
+        "20-30%",
+        "30-40%",
+        "40-50%",
+        "50-60%",
+        "60-70%",
+        "70-80%",
+        "80-90%",
+        "90-100%"
+      ]
+    },
+    "age_band": {
+      "fill_value": "0-35",
+      "categories": [
+        "0-35",
+        "35-55",
+        "55<="
+      ]
+    },
+    "disability": {
+      "fill_value": "N",
+      "categories": [
+        "N",
+        "Y"
+      ]
+    },
+    "code_module": {
+      "fill_value": "BBB",
+      "categories": [
+        "AAA",
+        "BBB",
+        "CCC",
+        "DDD",
+        "EEE",
+        "FFF",
+        "GGG"
+      ]
+    },
+    "code_presentation": {
+      "fill_value": "2014J",
+      "categories": [
+        "2013B",
+        "2013J",
+        "2014B",
+        "2014J"
+      ]
+    }
+  },
+  "feature_names": [
+    "num__num_of_prev_attempts",
+    "num__studied_credits",
+    "num__date_registration",
+    "num__clicks_8w",
+    "num__active_days_8w",
+    "num__active_weeks_8w",
+    "num__unique_sites_8w",
+    "num__avg_daily_clicks",
+    "num__clicks_w1_4",
+    "num__clicks_w5_8",
+    "num__engagement_change",
+    "num__engagement_ratio",
+    "num__assessments_attempted",
+    "num__mean_score_8w",
+    "num__score_std_8w",
+    "num__late_submissions_8w",
+    "num__avg_submission_delay",
+    "cat__gender_F",
+    "cat__gender_M",
+    "cat__region_East Anglian Region",
+    "cat__region_East Midlands Region",
+    "cat__region_Ireland",
+    "cat__region_London Region",
+    "cat__region_North Region",
+    "cat__region_North Western Region",
+    "cat__region_Scotland",
+    "cat__region_South East Region",
+    "cat__region_South Region",
+    "cat__region_South West Region",
+    "cat__region_Wales",
+    "cat__region_West Midlands Region",
+    "cat__region_Yorkshire Region",
+    "cat__highest_education_A Level or Equivalent",
+    "cat__highest_education_HE Qualification",
+    "cat__highest_education_Lower Than A Level",
+    "cat__highest_education_No Formal quals",
+    "cat__highest_education_Post Graduate Qualification",
+    "cat__imd_band_0-10%",
+    "cat__imd_band_10-20",
+    "cat__imd_band_20-30%",
+    "cat__imd_band_30-40%",
+    "cat__imd_band_40-50%",
+    "cat__imd_band_50-60%",
+    "cat__imd_band_60-70%",
+    "cat__imd_band_70-80%",
+    "cat__imd_band_80-90%",
+    "cat__imd_band_90-100%",
+    "cat__age_band_0-35",
+    "cat__age_band_35-55",
+    "cat__age_band_55<=",
+    "cat__disability_N",
+    "cat__disability_Y",
+    "cat__code_module_AAA",
+    "cat__code_module_BBB",
+    "cat__code_module_CCC",
+    "cat__code_module_DDD",
+    "cat__code_module_EEE",
+    "cat__code_module_FFF",
+    "cat__code_module_GGG",
+    "cat__code_presentation_2013B",
+    "cat__code_presentation_2013J",
+    "cat__code_presentation_2014B",
+    "cat__code_presentation_2014J"
+  ]
+}

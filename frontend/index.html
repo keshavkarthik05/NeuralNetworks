@@ -1,0 +1,1010 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        Student Dropout Prediction
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+</head>
+
+
+<body>
+
+
+<!-- ======================================================
+     SIDEBAR
+======================================================= -->
+
+<div class="sidebar">
+
+    <div class="brand">
+
+        <div class="brand-icon">
+            🎓
+        </div>
+
+        <div>
+
+            <h2>
+                EduPredict
+            </h2>
+
+            <span>
+                Explainable AI
+            </span>
+
+        </div>
+
+    </div>
+
+
+    <nav>
+
+        <button
+            class="nav-item active"
+            onclick="showPage('prediction', this)"
+        >
+            <span>🔮</span>
+            Student Prediction
+        </button>
+
+
+        <button
+            class="nav-item"
+            onclick="showPage('analytics', this)"
+        >
+            <span>📊</span>
+            Cohort Analytics
+        </button>
+
+
+        <button
+            class="nav-item"
+            onclick="showPage('model', this)"
+        >
+            <span>🧠</span>
+            Model & XAI
+        </button>
+
+    </nav>
+
+
+    <div class="sidebar-bottom">
+
+        <div class="status-dot"></div>
+
+        Model Online
+
+    </div>
+
+</div>
+
+
+<!-- ======================================================
+     MAIN
+======================================================= -->
+
+<div class="main">
+
+
+<!-- ======================================================
+     HEADER
+======================================================= -->
+
+<header>
+
+    <div>
+
+        <h1>
+            Student Dropout Prediction
+        </h1>
+
+        <p>
+            Early-warning analytics powered by Deep Learning & SHAP
+        </p>
+
+    </div>
+
+
+    <div class="header-status">
+
+        <span class="online-dot"></span>
+
+        System Online
+
+    </div>
+
+</header>
+
+
+<!-- ======================================================
+     PREDICTION PAGE
+======================================================= -->
+
+<section
+    id="prediction"
+    class="page active-page"
+>
+
+
+    <div class="page-title">
+
+        <h2>
+            Student Risk Assessment
+        </h2>
+
+        <p>
+            Select a student to generate an explainable dropout prediction.
+        </p>
+
+    </div>
+
+
+    <!-- Student selector -->
+
+    <div class="card selector-card">
+
+        <label>
+            Select Student
+        </label>
+
+
+        <div class="selector-row">
+
+            <select id="studentSelect">
+
+                <option>
+                    Loading students...
+                </option>
+
+            </select>
+
+
+            <button
+                class="primary-btn"
+                onclick="predictStudent()"
+            >
+
+                Analyze Student
+
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- Risk -->
+
+    <div
+        id="predictionResult"
+        style="display:none"
+    >
+
+
+        <div class="risk-banner">
+
+            <div>
+
+                <span class="small-label">
+                    PREDICTED RISK
+                </span>
+
+                <h2 id="riskText">
+                    HIGH
+                </h2>
+
+            </div>
+
+
+            <div class="probability">
+
+                <span id="probabilityText">
+                    0%
+                </span>
+
+                <small>
+                    dropout probability
+                </small>
+
+            </div>
+
+        </div>
+
+        <div id="riskInterpretation" class="risk-interpretation">
+        </div>
+
+
+        <!-- Student info -->
+
+        <div class="section-heading">
+
+            <h3>
+                Student Profile
+            </h3>
+
+        </div>
+
+
+        <div class="metrics-grid">
+
+            <div class="metric-card">
+
+                <span>
+                    Student ID
+                </span>
+
+                <strong id="studentId">
+                    -
+                </strong>
+
+            </div>
+
+
+            <div class="metric-card">
+
+                <span>
+                    Module
+                </span>
+
+                <strong id="module">
+                    -
+                </strong>
+
+            </div>
+
+
+            <div class="metric-card">
+
+                <span>
+                    Presentation
+                </span>
+
+                <strong id="presentation">
+                    -
+                </strong>
+
+            </div>
+
+
+            <div class="metric-card">
+
+                <span>
+                    Age Band
+                </span>
+
+                <strong id="ageBand">
+                    -
+                </strong>
+
+            </div>
+
+        </div>
+
+
+        <!-- Learning behaviour -->
+
+        <div class="section-heading">
+
+            <h3>
+                Learning Behaviour
+            </h3>
+
+        </div>
+
+
+        <div class="metrics-grid">
+
+            <div class="metric-card">
+
+                <span>
+                    LMS Clicks
+                </span>
+
+                <strong id="clicks">
+                    -
+                </strong>
+
+            </div>
+
+
+            <div class="metric-card">
+
+                <span>
+                    Active Days
+                </span>
+
+                <strong id="activeDays">
+                    -
+                </strong>
+
+            </div>
+
+
+            <div class="metric-card">
+
+                <span>
+                    Active Weeks
+                </span>
+
+                <strong id="activeWeeks">
+                    -
+                </strong>
+
+            </div>
+
+
+            <div class="metric-card">
+
+                <span>
+                    LMS Resources
+                </span>
+
+                <strong id="uniqueSites">
+                    -
+                </strong>
+
+            </div>
+
+
+            <div class="metric-card">
+
+                <span>
+                    Assessments
+                </span>
+
+                <strong id="assessments">
+                    -
+                </strong>
+
+            </div>
+
+
+            <div class="metric-card">
+
+                <span>
+                    Average Score
+                </span>
+
+                <strong id="meanScore">
+                    -
+                </strong>
+
+            </div>
+
+
+            <div class="metric-card">
+
+                <span>
+                    Late Submissions
+                </span>
+
+                <strong id="lateSubmissions">
+                    -
+                </strong>
+
+            </div>
+
+
+            <div class="metric-card">
+
+                <span>
+                    Engagement Change
+                </span>
+
+                <strong id="engagementChange">
+                    -
+                </strong>
+
+            </div>
+
+        </div>
+
+
+        <!-- SHAP -->
+
+        <div class="section-heading">
+
+            <h3>
+                🧠 Prediction Explanation
+            </h3>
+
+            <p>
+                SHAP explains how each factor influenced the predicted dropout risk.
+                Positive values increase predicted risk, while negative values reduce it.
+            </p>
+
+        </div>
+
+
+        <div class="card">
+
+            <canvas
+                id="shapChart"
+            ></canvas>
+
+        </div>
+
+
+        <div class="factor-grid">
+
+
+            <div class="factor-card positive">
+
+                <h3>
+                    ⚠️ Factors Increasing Risk
+                </h3>
+
+                <div id="positiveFactors"></div>
+
+            </div>
+
+
+            <div class="factor-card negative">
+
+                <h3>
+                    🛡️Factors Reducing Risk
+                </h3>
+
+                <div id="negativeFactors"></div>
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+
+</section>
+
+
+<!-- ======================================================
+     ANALYTICS
+======================================================= -->
+
+<section
+    id="analytics"
+    class="page"
+>
+
+
+    <div class="page-title">
+
+        <h2>
+            Cohort Analytics
+        </h2>
+
+        <p>
+            Monitor predicted dropout risk across the student population.
+        </p>
+
+    </div>
+
+
+    <!-- ==================================================
+         SUMMARY CARDS
+    =================================================== -->
+
+    <div class="metrics-grid four">
+
+
+        <div class="metric-card large">
+
+            <span>
+                Total Students
+            </span>
+
+            <strong id="totalStudents">
+                -
+            </strong>
+
+        </div>
+
+
+        <div class="metric-card large high-card">
+
+            <span>
+                High Risk
+            </span>
+
+            <strong id="highRisk">
+                -
+            </strong>
+
+        </div>
+
+
+        <div class="metric-card large medium-card">
+
+            <span>
+                Medium Risk
+            </span>
+
+            <strong id="mediumRisk">
+                -
+            </strong>
+
+        </div>
+
+
+        <div class="metric-card large">
+
+            <span>
+                Observed Dropout
+            </span>
+
+            <strong id="observedDropout">
+                -
+            </strong>
+
+        </div>
+
+    </div>
+
+
+    <!-- ==================================================
+         CHARTS
+    =================================================== -->
+
+    <div class="chart-grid">
+
+
+        <div class="card">
+
+            <h3>
+                Predicted Risk Distribution
+            </h3>
+
+            <p class="chart-description">
+                Distribution of students across predicted risk levels.
+            </p>
+
+            <canvas
+                id="riskChart"
+            ></canvas>
+
+        </div>
+
+
+        <div class="card">
+
+            <h3>
+                Module Risk Comparison
+            </h3>
+
+            <p class="chart-description">
+                Average predicted dropout risk by course module.
+            </p>
+
+            <canvas
+                id="moduleChart"
+            ></canvas>
+
+        </div>
+
+    </div>
+
+
+    <!-- ==================================================
+         MODULE TABLE
+    =================================================== -->
+
+    <div class="section-heading">
+
+        <h3>
+            Module-Level Risk Analysis
+        </h3>
+
+        <p>
+            Comparison between model-predicted risk and observed dropout.
+        </p>
+
+    </div>
+
+
+    <div class="card table-card">
+
+        <div class="table-wrapper">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>
+                            Module
+                        </th>
+
+                        <th>
+                            Students
+                        </th>
+
+                        <th>
+                            Predicted Risk
+                        </th>
+
+                        <th>
+                            Observed Dropout
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody
+                    id="moduleTable"
+                >
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+
+    <!-- ==================================================
+         HIGH RISK STUDENTS
+    =================================================== -->
+
+    <div class="section-heading">
+
+        <h3>
+            ⚠️ Students Requiring Attention
+        </h3>
+
+        <p>
+            Students with predicted dropout probability of 70% or higher.
+        </p>
+
+    </div>
+
+
+    <div class="card table-card">
+
+        <div class="risk-table-header">
+
+            <span>
+                High-risk student list
+            </span>
+
+            <span
+                id="highRiskCount"
+                class="count-badge"
+            >
+                0 students
+            </span>
+
+        </div>
+
+
+        <div class="table-wrapper">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>
+                            Student ID
+                        </th>
+
+                        <th>
+                            Module
+                        </th>
+
+                        <th>
+                            Presentation
+                        </th>
+
+                        <th>
+                            Dropout Risk
+                        </th>
+
+                        <th>
+                            LMS Clicks
+                        </th>
+
+                        <th>
+                            Active Days
+                        </th>
+
+                        <th>
+                            Avg. Score
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody
+                    id="highRiskTable"
+                >
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+
+</section>
+
+
+<!-- ======================================================
+     MODEL PAGE
+======================================================= -->
+
+<section
+    id="model"
+    class="page"
+>
+
+
+    <div class="page-title">
+
+        <h2>
+            Model & Explainable AI
+        </h2>
+
+        <p>
+            Deep neural network performance and explanation methodology.
+        </p>
+
+    </div>
+
+
+    <div class="metrics-grid">
+
+
+        <div class="metric-card">
+
+            <span>
+                Accuracy
+            </span>
+
+            <strong id="accuracy">
+                -
+            </strong>
+
+        </div>
+
+
+        <div class="metric-card">
+
+            <span>
+                Precision
+            </span>
+
+            <strong id="precision">
+                -
+            </strong>
+
+        </div>
+
+
+        <div class="metric-card">
+
+            <span>
+                Recall
+            </span>
+
+            <strong id="recall">
+                -
+            </strong>
+
+        </div>
+
+
+        <div class="metric-card">
+
+            <span>
+                F1 Score
+            </span>
+
+            <strong id="f1">
+                -
+            </strong>
+
+        </div>
+
+
+        <div class="metric-card">
+
+            <span>
+                ROC-AUC
+            </span>
+
+            <strong id="rocauc">
+                -
+            </strong>
+
+        </div>
+
+
+        <div class="metric-card">
+
+            <span>
+                PR-AUC
+            </span>
+
+            <strong id="prauc">
+                -
+            </strong>
+
+        </div>
+
+    </div>
+
+
+    <div class="model-grid">
+
+
+        <div class="card">
+
+            <h3>
+                Neural Network Architecture
+            </h3>
+
+
+            <div class="architecture">
+
+                <div>
+                    Input
+                    <b>63 Features</b>
+                </div>
+
+                <div class="arrow">
+                    ↓
+                </div>
+
+                <div>
+                    Dense
+                    <b>128 neurons</b>
+                </div>
+
+                <div class="arrow">
+                    ↓
+                </div>
+
+                <div>
+                    Dense
+                    <b>64 neurons</b>
+                </div>
+
+                <div class="arrow">
+                    ↓
+                </div>
+
+                <div>
+                    Dense
+                    <b>32 neurons</b>
+                </div>
+
+                <div class="arrow">
+                    ↓
+                </div>
+
+                <div>
+                    Output
+                    <b>Dropout Probability</b>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="card">
+
+            <h3>
+                SHAP Explainability
+            </h3>
+
+            <p>
+                SHAP (SHapley Additive exPlanations) explains
+                individual model predictions by measuring the
+                contribution of each feature.
+            </p>
+
+
+            <div class="explanation-box">
+
+                <div>
+                    <b>Positive SHAP</b>
+                    <span>
+                        increases predicted dropout risk
+                    </span>
+                </div>
+
+
+                <div>
+                    <b>Negative SHAP</b>
+                    <span>
+                        decreases predicted dropout risk
+                    </span>
+                </div>
+
+
+                <div>
+                    <b>Magnitude</b>
+                    <span>
+                        indicates feature influence
+                    </span>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="card early-warning">
+
+        <h3>
+            Early-Warning System
+        </h3>
+
+        <p>
+            The system uses the first 8 weeks of student
+            learning behaviour to identify students who may
+            require additional academic support.
+        </p>
+
+
+        <div class="tags">
+
+            <span>LMS Activity</span>
+
+            <span>Engagement</span>
+
+            <span>Assessments</span>
+
+            <span>Scores</span>
+
+            <span>Late Submissions</span>
+
+            <span>Learning Consistency</span>
+
+        </div>
+
+    </div>
+
+
+</section>
+
+
+</div>
+
+
+<script src="script.js"></script>
+
+</body>
+
+</html>
